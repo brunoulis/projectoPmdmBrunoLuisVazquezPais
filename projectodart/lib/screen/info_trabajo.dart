@@ -24,7 +24,17 @@ class _InfoTrabajoState extends State<InfoTrabajo> {
 @Override
 Widget build (BuildContext context){
   return Scaffold(extendBodyBehindAppBar: true,
-  appBar: AppBar(centerTitle: true,),)
+  appBar: AppBar(centerTitle: true,
+  titleTextStyle: const TextStyle(
+  fontFamily: "LeckerliOne", color: Colors.black87, fontSize: 24),
+  backgroundColor: const Color.fromARGB(125, 255, 255, 255),
+  foregroundColor: Colors.black87,
+  elevation: 0,
+  title: [
+    Text('${widget.trabajo}.General'),
+    Text('${widget.trabajo}.Especifico'),
+    ][indexActual]),
+  ),),
 
 
 }
