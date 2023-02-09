@@ -4,7 +4,7 @@ import 'dart:convert'; // Per realitzar conversions entre tipus de dades
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http; // Per realitzar peticions HTTP
 
-Future<List<dynamic>> obtInfoTrebajos(String ciudad) async{
+Future<List<dynamic>> obtInfoTrabajos(String ciudad) async{
   String url = 'https://node-trabajos-rest-server-production.up.railway.app/api/trabajos/$ciudad';
 
   // Lanzamos la petición GET mediante el método http.get, y esperamos a la respuesta
@@ -22,7 +22,7 @@ Future<List<dynamic>> obtInfoTrebajos(String ciudad) async{
   }
 }
 
-Future<dynamic> obtInfoTrebajo(String trabajo) async{
+Future<dynamic> obtInfoTrabajo(String trabajo) async{
   String url = 'https://node-trabajos-rest-server-production.up.railway.app/api/infotrabajo/$trabajo';
 
   // Lanzamos la petición GET mediante el método http.get, y esperamos a la respuesta
