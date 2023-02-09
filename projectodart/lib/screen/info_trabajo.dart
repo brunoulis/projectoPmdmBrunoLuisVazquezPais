@@ -34,7 +34,26 @@ Widget build (BuildContext context){
     Text('${widget.trabajo}.General'),
     Text('${widget.trabajo}.Especifico'),
     ][indexActual]),
-  ),),
+    bottomNavigationBar: NavigationBar(
+      onDestinationSelected: (int index) {
+        setState(() {
+          indexActual = index;
+        });
+      },
+      selectedIndex: indexActual,
+      destinations: const <Widget>[
+        NavigationDestination(
+          icon: icon(Icons.info_outline), 
+          selectedIcon: Icon(Icons.info),
+          label: 'El trabajo'),
+        NavigationDestination(
+          icon: icon(Icons.work_outline),
+          selectedIcon: Icon(Icons.work),
+          label: 'El trabajo en detalle',
+        ),
+      ],
+    ),
+  )
 
 
 }
