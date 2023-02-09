@@ -53,6 +53,10 @@ Widget build (BuildContext context){
         ),
       ],
     ),
+    body: <Widget>[
+      InfoTrabajo(info info,),
+      InfoTrabajoDetalle(info info,),
+    ],
   )
 
 
