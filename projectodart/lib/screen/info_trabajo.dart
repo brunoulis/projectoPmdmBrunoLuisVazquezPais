@@ -312,7 +312,6 @@ class _MydireccionInfoState extends State<MydireccionInfo>{
   Widget build(BuildContext context){ 
     return FutureBuilder(
       future: direccion,
-      
       // initialData: InitialData,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         if(snapshot.hasData){
@@ -321,7 +320,25 @@ class _MydireccionInfoState extends State<MydireccionInfo>{
           String calle= snapshot.data["calle"].toString();
           Double piso= snapshot.data["piso"].toString() as Double;
           Double numero= snapshot.data["numero"].toString() as Double;
-          return Column(children: [],);
+
+
+          return Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:[
+                  const Icon(Icons.thermostat, size: 35),
+                  Text(
+                    'Ciudad: $ciudad',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          );
 
         }
       }
