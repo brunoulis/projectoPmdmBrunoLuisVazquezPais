@@ -39,9 +39,9 @@ Future<dynamic> obtInfoTrabajo(String trabajo) async{
   }
 }
 
-Future<dynamic> obtDireccion({required String calle, required double piso,required double numero }) async{
+Future<dynamic> obtDireccion({required String ciudad,required String provincia,required String calle, required double piso,required double numero }) async{
 
-  String url='https://api.open-meteo.com/v1/forecast?calle=$calle&numero=$numero&piso=$piso';
+  String url='https://api.open-meteo.com/v1/forecast?ciudad=$ciudad&provincia=$provincia&calle=$calle&numero=$numero&piso=$piso';
   // Llancem una petició GET mitjançant el mètode http.get, i ens esperem a la resposta
   http.Response response = await http.get(Uri.parse(url));
 
