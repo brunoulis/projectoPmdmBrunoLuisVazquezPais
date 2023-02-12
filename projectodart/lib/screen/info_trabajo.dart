@@ -305,6 +305,7 @@ class _MydireccionInfoState extends State<MydireccionInfo>{
   @override
   void initState(){
     super.initState();
+    // Accedim a les propietats del giny amb la referència "widget"
     direccion = obtDireccion(ciudad: widget.ciudad, provincia: widget.provincia, calle: widget.calle, piso: widget.piso, numero: widget.numero);
   }
 
@@ -315,33 +316,57 @@ class _MydireccionInfoState extends State<MydireccionInfo>{
       // initialData: InitialData,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         if(snapshot.hasData){
-          String ciudad= snapshot.data["ciudad"].toString();
-          String provincia= snapshot.data["provincia"].toString();
-          String calle= snapshot.data["calle"].toString();
-          Double piso= snapshot.data["piso"].toString() as Double;
-          Double numero= snapshot.data["numero"].toString() as Double;
-
+          String ciudad= snapshot.data["current_direccion"]["ciudad"].toString();
+          String provincia= snapshot.data["current_direccion"]["provincia"].toString();
+          String calle= snapshot.data["current_direccion"]["calle"].toString();
+          Double piso= snapshot.data["current_direccion"]["piso"].toString() as Double;
+          Double numero= snapshot.data["current_direccion"]["numero"].toString() as Double;
+          Double codi= snapshot.data["current_direccion"]["codigo_distancia"].toString() as Double;
 
           return Column(
             children: [
+              _obtenerIconoDistancia(codi),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:[
                   const Icon(Icons.thermostat, size: 35),
                   Text(
-                    'Ciudad: $ciudad',
+                    'Provincia: $provincia',
                     style: Theme.of(context).textTheme.headline4,
                   ),
                 ],
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:[
+                  const Icon(Icons.thermostat, size: 35),
+                  const SizedBox(width: 30),
+                  Text(
+                    'Ciudad: $ciudad',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  const SizedBox(width: 30),
+                  obteGinyDistancia(ciudad),
+                ],
+              )
             ],
           );
 
         }
+        return const CircularProgressIndicator();
       }
     );
+  }
+  Widget obteGinyDistancia(String ciudad){
+    late Icon icono;
+    late String nombreProvincia;
+    late double distancia;
+
+    if (ciudad == "Barcelona"){
+      icono = const Icon(Icons.thermostat, size: 35);
+      nombreProvincia = "Barcelona";
+      distancia = 0.0;
+    }
   }
 }
