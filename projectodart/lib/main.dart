@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projectodart/myhomepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,13 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Infotrebajos',
-      debugShowCheckedModeBanner: false,
-      // Fem ús de rutes, en lloc del home)
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const SelectorCiudad(),
-      },
+      title:'Material App',
+      home: MyHomePage('Proyecto Dart'),
     ); 
   }
 }
