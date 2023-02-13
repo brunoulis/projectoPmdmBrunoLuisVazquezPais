@@ -365,7 +365,7 @@ class _MydireccionInfoState extends State<MydireccionInfo>{
 
     if (ciudad == "Barcelona"){
       icono = const Icon(Icons.thermostat, size: 35);
-      nombreProvincia = "Barcelona";
+      nombreProvincia = "Cataluña";
       distancia = 0.0;
     }
   }
