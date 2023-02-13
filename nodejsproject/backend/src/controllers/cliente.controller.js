@@ -11,4 +11,12 @@ const guardarCliente = async (req, res) => {
 
 }
 
-module.exports = {consultarClientes,guardarCliente};
+const eliminarCliente = async (req, res) => {
+    res.json({cliente: await ClienteService.eliminarCliente(req.params.id)});
+}
+
+const modificarCliente = async (req, res) => {
+    res.json({cliente: await ClienteService.modificarCliente(req.body)});
+}
+
+module.exports = {consultarClientes,guardarCliente, eliminarCliente, modificarCliente};

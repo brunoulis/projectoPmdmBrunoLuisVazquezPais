@@ -8,4 +8,4 @@ const clienteSchema = Schema({
     telefono: String
 });
 
-module.exports = model('Cliente', ClienteSchema);
+module.exports = model('Cliente', clienteSchema);

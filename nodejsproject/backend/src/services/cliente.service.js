@@ -22,6 +22,31 @@ class ClienteService{
         }
     }
 
+    async eliminarCliente(id){
+        console.log(id);
+        var clienteEliminado;
+        try{
+            await clienteModel.findOneAndRemove({_id: idc}).then((value)=>{
+                clienteEliminado = value;
+            });
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    async modificarCliente(newCliente){
+        var clienteModificado;
+        try{
+            await clienteModel.findOneAndUpdate({_id: newCliente._id}, newCliente).then((value)=>{
+                clienteModificado = value;
+        });
+        return clienteModificado;
+        }catch(error){
+            console.log(error);
+        }
+
+    }
+
 }
 
 module.exports = new ClienteService();
