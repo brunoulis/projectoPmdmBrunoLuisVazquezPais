@@ -2,7 +2,8 @@ const mongoose= require('mongoose');
 const dbConection= async() =>{
     try{
         console.log('Conectando DB.........');
-        await mongoose.connect('mongodb://localhost/myDataBase', {
+        // Creamos la conexion a la base de datos mongodb con contraseña y usuario root
+        await mongoose.connect('mongodb://root:root@127.0.0.1:27017/myDataBase', {
             useCreateIndex: true,
             useFindAndModify: false,
             useNewUrlParser: true,
