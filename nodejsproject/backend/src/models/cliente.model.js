@@ -1,10 +1,11 @@
 const{ Schema, model} = require('mongoose');
-const ClienteSchema = Schema({
+const clienteSchema = Schema({
     nombre: String,
     problema: String,
     descripcion: String,
     fecha: String,
     estado: String,
+    telefono: String
 });
 
 module.exports = model('Cliente', ClienteSchema);

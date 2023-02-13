@@ -6,7 +6,7 @@ class ClienteService{
         try{
             return await clienteModel.find();
         }catch(error){
-            throw new Error(error);
+            return error;
         }
     }
 
