@@ -10,6 +10,18 @@ class ClienteService{
         }
     }
 
+    async guardarCliente(cliente = new clienteModel()){
+        try{
+            var clienteGuardado;
+            await clienteModel.create(cliente).then((value)=>{
+                clienteGuardado = value;
+            }); 
+            return clienteGuardado;
+        }catch(error){
+            console.log(error);
+        }
+    }
+
 }
 
 module.exports = new ClienteService();

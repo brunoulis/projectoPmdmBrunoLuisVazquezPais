@@ -4,5 +4,6 @@ const app = express();
 
 
 app.use(morgan('dev'));
+app.use(require('./routes/cliente.route'));
 
 module.exports= {app};
