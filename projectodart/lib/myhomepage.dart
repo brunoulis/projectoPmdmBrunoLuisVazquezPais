@@ -40,7 +40,7 @@ class _MyHomePage extends State<MyHomePage> {
           title: Text(clientes[index].nombre+""+clientes[index].problema),
           subtitle: Text(clientes[index].descripcion+""+clientes[index].fecha+""+clientes[index].estado+""+clientes[index].telefono),
           leading: CircleAvatar(
-            child: Text(clientes[index].nombre.subString(0,1)),
+            child: Text(clientes[index].nombre.substring(0, 1)),
           ),
           trailing: Icon(Icons.call,
           color: Colors.red,),
@@ -49,7 +49,13 @@ class _MyHomePage extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterClient()));
+          Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterClient())).then((newClient){
+            if(newClient != null){
+              setState(() {
+                clientes.add(newClient);
+              });
+            }
+          });
         },
         tooltip: 'Añadir Cliente',
         child: Icon(Icons.add),

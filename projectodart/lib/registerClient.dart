@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projectodart/myhomepage.dart';
+import 'package:projectodart/textbox.dart';
 
 class RegisterClient extends StatefulWidget {
 
@@ -39,8 +41,31 @@ class _RegisterCliente extends State<RegisterClient>{
         title: Text('Registro de Cliente'),
       ),
       body: ListView(
+        children: [
+          TextBox(controllerNombre, 'Nombre'),
+          TextBox(controllerProblema, 'Problema'),
+          TextBox(controllerDescripcion, 'Descripcion'),
+          TextBox(controllerFecha, 'Fecha'),
+          TextBox(controllerEstado, 'Estado'),
+          TextBox(controllerTelefono, 'Telefono'),
+          ElevatedButton(
+            onPressed: (){
+              String nombre = controllerNombre.text;
+              String problema = controllerProblema.text;
+              String descripcion = controllerDescripcion.text;
+              String fecha = controllerFecha.text;
+              String estado = controllerEstado.text;
+              String telefono = controllerTelefono.text;
 
-        
+              if(nombre.isNotEmpty && problema.isNotEmpty  && descripcion.isNotEmpty  && fecha.isNotEmpty  && estado.isNotEmpty  && telefono.isNotEmpty ){
+                Navigator.pop(context, new Client(nombre, problema, descripcion, fecha, estado, telefono));
+              }
+            },
+            child: Text('Guardar'),
+          )
+        ],
+
+
       ),
 
     );
