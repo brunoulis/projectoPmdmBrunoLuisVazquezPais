@@ -38,7 +38,10 @@ class _RegisterCliente extends State<RegisterClient>{
       appBar: AppBar(
         title: Text('Registro de Cliente'),
       ),
-      body: ListView(),
+      body: ListView(
+
+        
+      ),
 
     );
 

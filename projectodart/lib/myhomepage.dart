@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projectodart/registerClient.dart';
+import 'package:projectodart/textbox.dart';
 
 class MyHomePage extends StatefulWidget {
   final String _title;
@@ -46,7 +48,9 @@ class _MyHomePage extends State<MyHomePage> {
       },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterClient()));
+        },
         tooltip: 'Añadir Cliente',
         child: Icon(Icons.add),
       ),
