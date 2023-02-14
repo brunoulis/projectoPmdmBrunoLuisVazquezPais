@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projectodart/message_response.dart';
 import 'package:projectodart/registerClient.dart';
 import 'package:projectodart/textbox.dart';
 
@@ -53,6 +54,7 @@ class _MyHomePage extends State<MyHomePage> {
             if(newClient != null){
               setState(() {
                 clientes.add(newClient);
+                messageResponse(context, newClient.nombre + " ha sido añadido");
               });
             }
           });
