@@ -38,8 +38,8 @@ class _MyHomePage extends State<MyHomePage> {
         return ListTile(
           onTap: () {},
           onLongPress: (){},
-          title: Text(clientes[index].nombre+""+clientes[index].problema),
-          subtitle: Text(clientes[index].descripcion+""+clientes[index].fecha+""+clientes[index].estado+""+clientes[index].telefono),
+          title: Text(clientes[index].nombre),
+          subtitle: Text(clientes[index].problema+" "+clientes[index].telefono),
           leading: CircleAvatar(
             child: Text(clientes[index].nombre.substring(0, 1)),
           ),
