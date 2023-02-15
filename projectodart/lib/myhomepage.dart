@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projectodart/message_response.dart';
+import 'package:projectodart/modifyClient.dart';
 import 'package:projectodart/registerClient.dart';
 import 'package:projectodart/textbox.dart';
 
@@ -10,12 +11,6 @@ class MyHomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _MyHomePage();
     // TODO: implement createState
-    
-  
-  
-  
-
-  
 }
 
 class _MyHomePage extends State<MyHomePage> {
@@ -36,8 +31,23 @@ class _MyHomePage extends State<MyHomePage> {
         itemCount: clientes.length,
         itemBuilder: (context, index) {
         return ListTile(
-          onTap: () {},
-          onLongPress: (){},
+          onTap: () {
+            Navigator.push(
+              context,
+               MaterialPageRoute(
+                builder: (_) => ModifyClient(clientes[index]))).then((newClient){
+              if(newClient != null){
+                setState(() {
+                                                                   
+                  messageResponse(context, newClient.nombre + " ha sido modificado");
+                });
+              }
+            });
+          },
+          onLongPress: (){
+            //TODO: Eliminar cliente
+            remoceClient(context, clientes[index]);
+          },
           title: Text(clientes[index].nombre),
           subtitle: Text(clientes[index].problema+" "+clientes[index].telefono),
           leading: CircleAvatar(
@@ -65,6 +75,37 @@ class _MyHomePage extends State<MyHomePage> {
     );
   }
 
+  remoceClient(BuildContext context, Client client){
+    showDialog(context: context,
+     builder: (_) => AlertDialog(
+      title: Text("Eliminar Cliente"),
+      content: Text("¿Estas seguro de eliminar el cliente " + client.nombre + "?"),
+      actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      clientes.remove(client);
+                      Navigator.pop(context);
+                    });
+                  },
+                  child: const Text(
+                    "Eliminar",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    "Cancelar",
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                )
+              ],
+     )
+     );
+  }
   
 }
 
