@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projectodart/message_response.dart';
-import 'package:projectodart/modifyClient.dart';
-import 'package:projectodart/registerClient.dart';
+import 'package:projectodart/pantallas/message_response.dart';
+import 'package:projectodart/pantallas/modifyClient.dart';
+import 'package:projectodart/pantallas/registerClient.dart';
 import 'package:projectodart/textbox.dart';
 
 class MyHomePage extends StatefulWidget {

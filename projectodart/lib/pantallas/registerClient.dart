@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:projectodart/myhomepage.dart';
+import 'package:projectodart/pantallas/myhomepage.dart';
 import 'package:projectodart/textbox.dart';
 
-class ModifyClient extends StatefulWidget {
-  final Client _client;
-  ModifyClient(this._client);
-  @override
-  State<StatefulWidget> createState() => _ModifyClient();
-}
+class RegisterClient extends StatefulWidget {
 
-class _ModifyClient extends State<ModifyClient>{
+  @override
+  State<StatefulWidget> createState() => _RegisterCliente();
+
+
+
+}
+  
+class _RegisterCliente extends State<RegisterClient>{
 
   late TextEditingController controllerNombre;
   late TextEditingController controllerProblema;
@@ -18,26 +20,27 @@ class _ModifyClient extends State<ModifyClient>{
   late TextEditingController controllerEstado;
   late TextEditingController controllerTelefono;
 
-  @override void initState() {
-    // TODO: implement initState
-    Client client = widget._client;
-    controllerNombre = new TextEditingController(text: client.nombre);
-    controllerProblema = new TextEditingController(text: client.problema);
-    controllerDescripcion =  new TextEditingController(text: client.descripcion);
-    controllerFecha = new TextEditingController(text: client.fecha);
-    controllerEstado = new TextEditingController(text: client.estado);
-    controllerTelefono = new TextEditingController(text: client.telefono);
+  @override
+  void initState(){
+    
+    controllerNombre = new TextEditingController();
+    controllerProblema = new TextEditingController();
+    controllerDescripcion =  new TextEditingController();
+    controllerFecha = new TextEditingController();
+    controllerEstado = new TextEditingController();
+    controllerTelefono = new TextEditingController();
     super.initState();
   }
 
+
+
   @override
   Widget build(BuildContext context){
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Modificar Cliente'),
-        ),
-        body: ListView(
+        title: Text('Registro de Cliente'),
+      ),
+      body: ListView(
         children: [
           TextBox(controllerNombre, 'Nombre'),
           TextBox(controllerProblema, 'Problema'),
@@ -64,10 +67,12 @@ class _ModifyClient extends State<ModifyClient>{
 
 
       ),
-      
 
     );
+
+
   }
+
 
 
 }
