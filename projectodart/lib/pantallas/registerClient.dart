@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projectodart/pantallas/myhomepage.dart';
-import 'package:projectodart/textbox.dart';
+import 'package:projectodart/pantallas/textbox.dart';
 
 class RegisterClient extends StatefulWidget {
 

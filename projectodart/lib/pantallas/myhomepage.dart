@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projectodart/modelos/cliente.model.dart';
 import 'package:projectodart/pantallas/message_response.dart';
 import 'package:projectodart/pantallas/modifyClient.dart';
 import 'package:projectodart/pantallas/registerClient.dart';
-import 'package:projectodart/textbox.dart';
+import 'package:projectodart/pantallas/textbox.dart';
+import 'package:projectodart/peticiones/cliente.peticion.dart';
 
 class MyHomePage extends StatefulWidget {
   final String _title;
@@ -14,12 +16,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePage extends State<MyHomePage> {
-  int _counter = 0;
-
-  List<Client> clientes=[
-    Client('Juan', 'Aire acondicionado no funciona', 'Descripcion1', '13/02/23', 'Finalizado', '75695233465'),
-    Client('Pedro', 'Aire acondicionado no funciona', 'Descripcion2', '11/02/23', 'Sin Finalizar', '75695233465'),
-  ];
+  
   
   @override
   Widget build(BuildContext context) {
@@ -27,7 +24,62 @@ class _MyHomePage extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget._title),
       ),
-      body: ListView.builder(
+      body: getClients(context, listaClients()),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterClient())).then((newClient){
+            if(newClient != null){
+              setState(() {
+                //clientes.add(newClient);
+                messageResponse(context, newClient.nombre + " ha sido añadido");
+              });
+            }
+          });
+        },
+        tooltip: 'Añadir Cliente',
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+
+  Widget getClients(BuildContext context, Future<List<Client>> futureClient){
+
+    return FutureBuilder(
+      future: futureClient,
+      builder: (BuildContext context,AsyncSnapshot snapshot){
+        switch(snapshot.connectionState){
+          case ConnectionState.none:
+            return Text("No hay conexión");
+          case ConnectionState.waiting:
+            return Center(child: CircularProgressIndicator());
+          case ConnectionState.active:
+            return Text("Activo");
+          case ConnectionState.done:
+            if(snapshot.hasError){
+              return Container(alignment: Alignment.center,
+              child: Center(
+                child: Text("Error ${snapshot.error}"),
+                ),
+              );
+              
+            }
+              return (snapshot.data != null)? 
+              listaClients(snapshot.data): Container(
+                alignment: Alignment.center,
+                child: Center(
+                  child: Text('Sin Datos'),
+                ),
+              );
+          default: return Text("Recarga la pantalla por favor...");  
+        }
+      }
+    );
+
+  }
+
+  Widget listaClients(List<Client> clientes){
+
+    return ListView.builder(
         itemCount: clientes.length,
         itemBuilder: (context, index) {
         return ListTile(
@@ -57,22 +109,7 @@ class _MyHomePage extends State<MyHomePage> {
           color: Colors.red,),
         );
       },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterClient())).then((newClient){
-            if(newClient != null){
-              setState(() {
-                clientes.add(newClient);
-                messageResponse(context, newClient.nombre + " ha sido añadido");
-              });
-            }
-          });
-        },
-        tooltip: 'Añadir Cliente',
-        child: Icon(Icons.add),
-      ),
-    );
+      );
   }
 
   remoceClient(BuildContext context, Client client){
@@ -84,7 +121,7 @@ class _MyHomePage extends State<MyHomePage> {
                 TextButton(
                   onPressed: () {
                     setState(() {
-                      clientes.remove(client);
+                      //clientes.remove(client);
                       Navigator.pop(context);
                     });
                   },
@@ -109,16 +146,3 @@ class _MyHomePage extends State<MyHomePage> {
   
 }
 
-class Client{
-  var nombre;
-  var problema;
-  var descripcion;
-  var fecha;
-  var estado;
-  var telefono;
-
-
-  Client(this.nombre, this.problema, this.descripcion, this.fecha, this.estado, this.telefono);
-
-
-}
