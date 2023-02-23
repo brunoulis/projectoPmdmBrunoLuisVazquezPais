@@ -12,14 +12,15 @@ class Client{
 
   factory Client.fromJson(Map<String, dynamic> json) {
     return Client(
-      json["_id"],
-      json["nombre"],
-      json["problema"],
-      json["descripcion"],
-      json["fecha"],
-      json["estado"],
-      json["telefono"],
-    );
-    
+      json['id'],
+      json['nombre'],
+      json['problema'],
+      json['descripcion'],
+      json['fecha'],
+      json['estado'],
+      json['telefono']
+    );    
   }
+
+  Client.fromData(this.nombre, this.problema, this.descripcion, this.fecha, this.estado, this.telefono);
 }

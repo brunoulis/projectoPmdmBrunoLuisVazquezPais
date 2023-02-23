@@ -9,22 +9,20 @@ import 'package:projectodart/peticiones/cliente.peticion.dart';
 class MyHomePage extends StatefulWidget {
   final String _title;
   MyHomePage(this._title);
-  
   @override
   State<StatefulWidget> createState() => _MyHomePage();
     // TODO: implement createState
 }
 
 class _MyHomePage extends State<MyHomePage> {
-  
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget._title),
       ),
-      body: getClients(context, listaClients()),
+      // le pasamos el contexto y la lista de clientes
+      body: getClients(context, listaClientes()),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterClient())).then((newClient){
@@ -48,33 +46,29 @@ class _MyHomePage extends State<MyHomePage> {
       future: futureClient,
       builder: (BuildContext context,AsyncSnapshot snapshot){
         switch(snapshot.connectionState){
-          case ConnectionState.none:
-            return Text("No hay conexión");
           case ConnectionState.waiting:
             return Center(child: CircularProgressIndicator());
-          case ConnectionState.active:
-            return Text("Activo");
           case ConnectionState.done:
             if(snapshot.hasError){
-              return Container(alignment: Alignment.center,
-              child: Center(
-                child: Text("Error ${snapshot.error}"),
-                ),
-              );
-              
-            }
-              return (snapshot.data != null)? 
-              listaClients(snapshot.data): Container(
+              return Container(
                 alignment: Alignment.center,
                 child: Center(
-                  child: Text('Sin Datos'),
+                  child: Text("Error: ${snapshot.error}"),
                 ),
               );
-          default: return Text("Recarga la pantalla por favor...");  
+            }
+          return (snapshot.data != null) ?
+            listaClients(snapshot.data) :
+            Container(alignment: Alignment.center,
+            child: Center(
+              child: Text("No hay datos"),
+            ),
+          );
+          default: 
+          return Text("Recarga la pantalla...!");
         }
-      }
+      },
     );
-
   }
 
   Widget listaClients(List<Client> clientes){
@@ -98,7 +92,7 @@ class _MyHomePage extends State<MyHomePage> {
           },
           onLongPress: (){
             //TODO: Eliminar cliente
-            remoceClient(context, clientes[index]);
+            removeClient(context, clientes[index]);
           },
           title: Text(clientes[index].nombre),
           subtitle: Text(clientes[index].problema+" "+clientes[index].telefono),
@@ -112,7 +106,7 @@ class _MyHomePage extends State<MyHomePage> {
       );
   }
 
-  remoceClient(BuildContext context, Client client){
+  removeClient(BuildContext context, Client client){
     showDialog(context: context,
      builder: (_) => AlertDialog(
       title: Text("Eliminar Cliente"),

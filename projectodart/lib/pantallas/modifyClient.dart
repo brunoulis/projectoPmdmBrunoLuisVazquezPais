@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projectodart/pantallas/myhomepage.dart';
-import 'package:projectodart/pantallas//textbox.dart';
+import 'package:projectodart/modelos/cliente.model.dart';
+import 'package:projectodart/pantallas/textbox.dart';
 
 class ModifyClient extends StatefulWidget {
   final Client _client;
@@ -55,7 +55,7 @@ class _ModifyClient extends State<ModifyClient>{
               String telefono = controllerTelefono.text;
 
               if(nombre.isNotEmpty && problema.isNotEmpty  && descripcion.isNotEmpty  && fecha.isNotEmpty  && estado.isNotEmpty  && telefono.isNotEmpty ){
-                Navigator.pop(context, new Client(nombre, problema, descripcion, fecha, estado, telefono));
+                Navigator.pop(context, Client.fromData(nombre, problema, descripcion, fecha, estado, telefono));
               }
             },
             child: Text('Guardar'),
