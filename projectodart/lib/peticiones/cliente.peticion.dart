@@ -44,6 +44,7 @@ mapClient(Client client, bool mapId){
       'telefono': client.telefono
     };
   }
+  return data;
 }
 
 Future<Client> addClient(Client client) async {
@@ -57,5 +58,31 @@ Future<Client> addClient(Client client) async {
     return Client.fromJson(jsonDecode(response.body)['cliente']);
   }else{
     throw Exception('Error al intentar añadir un cliente');
+  }
+}
+
+Future<Client> updateClient(Client client) async {
+  var url = Uri.parse('http://localhost:4002/api/clientes/mod');
+  var _body =json.encode(mapClient(client, true));
+
+  var response = await http.put(url, 
+    headers: {"Content-Type": "application/json; charset=UTF-8"}, body: _body);
+
+  if(response.statusCode == 200){
+    return Client.fromJson(jsonDecode(response.body)['cliente']);
+  }else{
+    throw Exception('Error al intentar actualizar un cliente');
+  }
+}
+
+Future<Client> deleteClient(Client client) async {
+  var url = Uri.parse('http://localhost:4002/api/clientes/delete/${client.id}');
+
+  var response = await http.delete(url);
+
+  if(response.statusCode == 200){
+    return Client.fromJson(jsonDecode(response.body)['cliente']);
+  }else{
+    throw Exception('Error al intentar eliminar un cliente');
   }
 }
