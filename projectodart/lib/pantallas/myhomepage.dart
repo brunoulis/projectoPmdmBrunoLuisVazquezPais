@@ -26,12 +26,9 @@ class _MyHomePage extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterClient())).then((newClient){
-            if(newClient != null){
               setState(() {
-                //clientes.add(newClient);
                 messageResponse(context, newClient.nombre + " ha sido añadido");
               });
-            }
           });
         },
         tooltip: 'Añadir Cliente',

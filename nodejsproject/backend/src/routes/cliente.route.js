@@ -3,8 +3,8 @@ const {consultarClientes, guardarCliente, eliminarCliente,modificarCliente}  = r
 const router = Router();
 
 router.get('/api/clientes', consultarClientes);
-router.post('/api/clientes/registro', guardarCliente);
-router.delete('/api/clientes/eliminar', eliminarCliente);
-router.put('/api/clientes/modificar', modificarCliente);
+router.post('/api/clientes/add', guardarCliente);
+router.delete('/api/clientes/delete', eliminarCliente);
+router.put('/api/clientes/mod', modificarCliente);
 
 module.exports = router;

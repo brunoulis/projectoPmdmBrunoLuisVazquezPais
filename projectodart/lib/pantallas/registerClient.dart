@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projectodart/modelos/cliente.model.dart';
 import 'package:projectodart/pantallas/textbox.dart';
+import 'package:projectodart/peticiones/cliente.peticion.dart';
 
 class RegisterClient extends StatefulWidget {
   @override
@@ -54,14 +55,19 @@ class _RegisterCliente extends State<RegisterClient>{
               String telefono = controllerTelefono.text;
 
               if(nombre.isNotEmpty && problema.isNotEmpty  && descripcion.isNotEmpty  && fecha.isNotEmpty  && estado.isNotEmpty  && telefono.isNotEmpty ){
-                Navigator.pop(context,
-                 Client.fromData(nombre, problema, descripcion, fecha, estado, telefono));
+                
+                Client client = Client.fromData(nombre, problema, descripcion, fecha, estado, telefono);
+                addClient(client).then((value) {
+                  if(value.id!=''){
+                    Navigator.pop(context, value);
+                  }
+                });
               }
             },
             child: Text('Guardar'),
           )
         ],
-
+        
 
       ),
 
