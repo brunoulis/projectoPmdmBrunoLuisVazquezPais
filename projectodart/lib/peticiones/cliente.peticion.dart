@@ -76,13 +76,13 @@ Future<Client> updateClient(Client client) async {
 }
 
 Future<Client> deleteClient(Client client) async {
-  var url = Uri.parse('http://localhost:4002/api/clientes/delete/${client.id}');
-
-  var response = await http.delete(url);
-
+  final response= await http.delete(Uri.parse('http://localhost:4002/api/clientes/del/${client.id}'),
+    headers: {"Content-Type": "application/json; charset=UTF-8"}
+  );
   if(response.statusCode == 200){
     return Client.fromJson(jsonDecode(response.body)['cliente']);
   }else{
     throw Exception('Error al intentar eliminar un cliente');
   }
+
 }

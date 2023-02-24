@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projectodart/modelos/cliente.model.dart';
 import 'package:projectodart/pantallas/textbox.dart';
 
+import '../peticiones/cliente.peticion.dart';
+
 class ModifyClient extends StatefulWidget {
   final Client _client;
   ModifyClient(this._client);
@@ -17,10 +19,12 @@ class _ModifyClient extends State<ModifyClient>{
   late TextEditingController controllerFecha;
   late TextEditingController controllerEstado;
   late TextEditingController controllerTelefono;
+  late String id;
 
   @override void initState() {
     // TODO: implement initState
     Client client = widget._client;
+    id = client.id;
     controllerNombre = new TextEditingController(text: client.nombre);
     controllerProblema = new TextEditingController(text: client.problema);
     controllerDescripcion =  new TextEditingController(text: client.descripcion);
@@ -55,10 +59,16 @@ class _ModifyClient extends State<ModifyClient>{
               String telefono = controllerTelefono.text;
 
               if(nombre.isNotEmpty && problema.isNotEmpty  && descripcion.isNotEmpty  && fecha.isNotEmpty  && estado.isNotEmpty  && telefono.isNotEmpty ){
-                Navigator.pop(context, Client.fromData(nombre, problema, descripcion, fecha, estado, telefono));
+                
+                Client client = Client(id,nombre, problema, descripcion, fecha, estado, telefono);
+                updateClient(client).then((value) {
+                  if(value.id!=''){
+                    Navigator.pop(context, value);
+                  }
+                });
               }
             },
-            child: Text('Guardar'),
+            child: Text('Actualizar'),
           )
         ],
 

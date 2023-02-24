@@ -79,12 +79,9 @@ class _MyHomePage extends State<MyHomePage> {
               context,
                MaterialPageRoute(
                 builder: (_) => ModifyClient(clientes[index]))).then((newClient){
-              if(newClient != null){
-                setState(() {
-                                                                   
+                setState(() {                                             
                   messageResponse(context, newClient.nombre + " ha sido modificado");
                 });
-              }
             });
           },
           onLongPress: (){
@@ -111,10 +108,18 @@ class _MyHomePage extends State<MyHomePage> {
       actions: [
                 TextButton(
                   onPressed: () {
-                    setState(() {
-                      //clientes.remove(client);
-                      Navigator.pop(context);
-                    });
+                    deleteClient(client.id).then((value){
+                        if(value.id != null){
+
+                          setState(() {
+                            messageResponse(context, client.nombre + " ha sido eliminado");
+                          });
+                          Navigator.pop(context);
+                        }
+
+                      }
+                    
+                    );
                   },
                   child: const Text(
                     "Eliminar",

@@ -1,5 +1,5 @@
 class Client{
-  var id;
+  late var id;
   var nombre;
   var problema;
   var descripcion;
