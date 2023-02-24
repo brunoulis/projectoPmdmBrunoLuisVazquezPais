@@ -75,8 +75,8 @@ Future<Client> updateClient(Client client) async {
   }
 }
 
-Future<Client> deleteClient(Client client) async {
-  final response= await http.delete(Uri.parse('http://localhost:4002/api/clientes/del/${client.id}'),
+Future<Client> deleteClient(String clientId) async {
+  final response= await http.delete(Uri.parse('http://localhost:4002/api/clientes/del/${clientId}'),
     headers: {"Content-Type": "application/json; charset=UTF-8"}
   );
   if(response.statusCode == 200){
