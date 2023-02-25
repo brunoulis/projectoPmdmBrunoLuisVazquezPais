@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Importar el paquete intl para dar formato a la fecha
+import 'package:intl/intl.dart';
 import 'package:projectodart/modelos/cliente.model.dart';
 import 'package:projectodart/pantallas/textbox.dart';
-import '../peticiones/cliente.peticion.dart';
+import 'package:projectodart/peticiones/cliente.peticion.dart';
+import 'package:flutter/services.dart';
 
 class ModifyClient extends StatefulWidget {
   final Client _client;
@@ -79,6 +80,15 @@ class _ModifyClient extends State<ModifyClient>{
       
 
     );
+  }
+
+  String formatPhoneNumber(String value) {
+    final phoneNumber = value.replaceAll(RegExp(r'[^\d]'), '');
+    final firstSubstring =
+        phoneNumber.substring(0, phoneNumber.length > 3 ? 3 : phoneNumber.length);
+    final secondSubstring = phoneNumber.length > 3 ? phoneNumber.substring(3) : '';
+
+    return '$firstSubstring-$secondSubstring';
   }
 
 
