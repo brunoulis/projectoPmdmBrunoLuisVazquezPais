@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart'; // Importar el paquete intl para dar formato a la fecha
 import 'package:projectodart/modelos/cliente.model.dart';
 import 'package:projectodart/pantallas/textbox.dart';
-
 import '../peticiones/cliente.peticion.dart';
 
 class ModifyClient extends StatefulWidget {
@@ -20,6 +20,7 @@ class _ModifyClient extends State<ModifyClient>{
   late TextEditingController controllerEstado;
   late TextEditingController controllerTelefono;
   late String id;
+  late DateFormat dateFormat; // Agregar una variable dateFormat para dar formato a la fecha
 
   @override void initState() {
     // TODO: implement initState
@@ -28,7 +29,8 @@ class _ModifyClient extends State<ModifyClient>{
     controllerNombre = new TextEditingController(text: client.nombre);
     controllerProblema = new TextEditingController(text: client.problema);
     controllerDescripcion =  new TextEditingController(text: client.descripcion);
-    controllerFecha = new TextEditingController(text: client.fecha);
+    dateFormat = new DateFormat('dd/MM/yy'); // Inicializar dateFormat con el formato deseado
+    controllerFecha = new TextEditingController(text: dateFormat.format(DateTime.parse(client.fecha))); // Dar formato a la fecha al inicializar el controlador
     controllerEstado = new TextEditingController(text: client.estado);
     controllerTelefono = new TextEditingController(text: client.telefono);
     super.initState();
