@@ -25,7 +25,7 @@ class _RegisterCliente extends State<RegisterClient> {
     controllerNombre = TextEditingController();
     controllerProblema = TextEditingController();
     controllerDescripcion = TextEditingController();
-    final DateFormat formatter = DateFormat('dd/MM/yy');
+    controllerFecha = TextEditingController();
     controllerEstado = TextEditingController();
     controllerTelefono = TextEditingController();
     super.initState();
@@ -98,8 +98,14 @@ class _RegisterCliente extends State<RegisterClient> {
                     fecha.isNotEmpty &&
                     estado.isNotEmpty &&
                     telefono.isNotEmpty) {
-                  Client client =
-                      Client.fromData(nombre, problema, descripcion, fecha, estado, telefono);
+                  Client client = Client(
+                    name: nombre,
+                    problem: problema,
+                    descripcion: descripcion,
+                    date: fecha,
+                    state: estado,
+                    phone: telefono,
+                  );
                   addClient(client).then((value) {
                     if (value.id != '') {
                       Navigator.pop(context, value);

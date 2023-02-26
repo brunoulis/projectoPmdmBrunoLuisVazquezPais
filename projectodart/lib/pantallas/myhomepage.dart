@@ -88,10 +88,10 @@ class _MyHomePage extends State<MyHomePage> {
             //TODO: Eliminar cliente
             removeClient(context, clientes[index]);
           },
-          title: Text(clientes[index].nombre),
-          subtitle: Text(clientes[index].problema+" "+clientes[index].telefono),
+          title: Text(clientes[index].name),
+          subtitle: Text(clientes[index].problem+" "+clientes[index].phone),
           leading: CircleAvatar(
-            child: Text(clientes[index].nombre.substring(0, 1)),
+            child: Text(clientes[index].name.substring(0, 1)),
           ),
           trailing: Icon(Icons.call,
           color: Colors.red,),
@@ -104,7 +104,7 @@ class _MyHomePage extends State<MyHomePage> {
     showDialog(context: context,
      builder: (_) => AlertDialog(
       title: Text("Eliminar Cliente"),
-      content: Text("¿Estas seguro de eliminar el cliente " + client.nombre + "?"),
+      content: Text("¿Estas seguro de eliminar el cliente " + client.name + "?"),
       actions: [
                 TextButton(
                   onPressed: () {
@@ -112,7 +112,7 @@ class _MyHomePage extends State<MyHomePage> {
                         if(value.id != null){
 
                           setState(() {
-                            messageResponse(context, client.nombre + " ha sido eliminado");
+                            messageResponse(context, client.name + " ha sido eliminado");
                           });
                           Navigator.pop(context);
                         }

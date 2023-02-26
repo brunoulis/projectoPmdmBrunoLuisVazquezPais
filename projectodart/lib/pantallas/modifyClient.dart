@@ -27,12 +27,12 @@ class _ModifyClient extends State<ModifyClient>{
     // TODO: implement initState
     Client client = widget._client;
     id = client.id;
-    controllerNombre = new TextEditingController(text: client.nombre);
-    controllerProblema = new TextEditingController(text: client.problema);
+    controllerNombre = new TextEditingController(text: client.name);
+    controllerProblema = new TextEditingController(text: client.problem);
     controllerDescripcion =  new TextEditingController(text: client.descripcion);
     final DateFormat formatter = DateFormat('dd/MM/yy');
-    controllerEstado = new TextEditingController(text: client.estado);
-    controllerTelefono = new TextEditingController(text: client.telefono);
+    controllerEstado = new TextEditingController(text: client.state);
+    controllerTelefono = new TextEditingController(text: client.phone);
     super.initState();
   }
 @override
@@ -102,8 +102,14 @@ class _ModifyClient extends State<ModifyClient>{
                     fecha.isNotEmpty &&
                     estado.isNotEmpty &&
                     telefono.isNotEmpty) {
-                  Client client =
-                      Client.fromData(nombre, problema, descripcion, fecha, estado, telefono);
+                  Client client = Client(
+                    name: nombre,
+                    problem: problema,
+                    descripcion: descripcion,
+                    date: fecha,
+                    state: estado,
+                    phone: telefono,
+                  );
                   updateClient(client).then((value) {
                     if (value.id != '') {
                       Navigator.pop(context, value);

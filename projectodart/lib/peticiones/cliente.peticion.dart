@@ -25,23 +25,23 @@ mapClient(Client client, bool mapId){
   // Si vamos a guardar no enviamos el id en el objeto por que es automatico
   if(!mapId){
     data ={
-      'nombre': client.nombre,
-      'problema': client.problema,
+      'nombre': client.name,
+      'problema': client.problem,
       'descripcion': client.descripcion,
-      'fecha': client.fecha,
-      'estado': client.estado,
-      'telefono': client.telefono
+      'fecha': client.date,
+      'estado': client.state,
+      'telefono': client.phone
     };
     // Si vamos a actualizar enviamos el objeto cliente con su id
   }else{
     data ={
       'id': client.id,
-      'nombre': client.nombre,
-      'problema': client.problema,
+      'nombre': client.name,
+      'problema': client.problem,
       'descripcion': client.descripcion,
-      'fecha': client.fecha,
-      'estado': client.estado,
-      'telefono': client.telefono
+      'fecha': client.date,
+      'estado': client.state,
+      'telefono': client.phone
     };
   }
   return data;

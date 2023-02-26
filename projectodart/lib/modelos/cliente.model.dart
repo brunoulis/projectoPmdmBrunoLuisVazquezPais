@@ -1,26 +1,31 @@
-class Client{
+class Client {
   var id;
-  var nombre;
-  var problema;
+  var name;
+  var problem;
   var descripcion;
-  var fecha;
-  var estado;
-  var telefono;
+  var date;
+  var state;
+  var phone;
 
-
-  Client(this.id,this.nombre, this.problema, this.descripcion, this.fecha, this.estado, this.telefono);
+  Client({
+    this.id,
+    this.name,
+    this.descripcion,
+    this.problem,
+    this.date,
+    this.state,
+    this.phone,
+  });
 
   factory Client.fromJson(Map<String, dynamic> json) {
     return Client(
-      json['id'],
-      json['nombre'],
-      json['problema'],
-      json['descripcion'],
-      json['fecha'],
-      json['estado'],
-      json['telefono']
-    );    
+      id: json['_id'],
+      name: json['nombre'],
+      descripcion: json['descripcion'],
+      problem: json['problema'],
+      date: json['fecha'],
+      state: json['estado'],
+      phone: json['telefono'],
+    );
   }
-
-  Client.fromData(this.nombre, this.problema, this.descripcion, this.fecha, this.estado, this.telefono);
 }
