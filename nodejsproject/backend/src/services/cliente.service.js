@@ -23,28 +23,30 @@ class ClienteService{
     }
 
     async eliminarCliente(id){
-        console.log(id);
-        var clienteEliminado;
-        try{
-            await clienteModel.findOneAndRemove({_id: idc}).then((value)=>{
-                clienteEliminado = value;
-            });
-        }catch(error){
+        try {
+            const clienteEliminado = await clienteModel.findOneAndRemove({_id: id});
+            return clienteEliminado;
+        } catch (error) {
             console.log(error);
         }
     }
+    
 
     async modificarCliente(newCliente){
-        var clienteModificado;
-        try{
-            await clienteModel.findOneAndUpdate({_id: newCliente._id}, newCliente).then((value)=>{
-                clienteModificado = value;
-        });
-        return clienteModificado;
-        }catch(error){
+        try {
+            const clienteModificado = await clienteModel.findById(newCliente._id);
+            clienteModificado.nombre = newCliente.nombre;
+            clienteModificado.problema = newCliente.problema;
+            clienteModificado.descripcion = newCliente.descripcion;
+            clienteModificado.fecha = newCliente.fecha;
+            clienteModificado.estado = newCliente.estado;
+            clienteModificado.telefono = newCliente.telefono;
+    
+            await clienteModificado.save();
+            return clienteModificado;
+        } catch (error) {
             console.log(error);
         }
-
     }
 
 }
