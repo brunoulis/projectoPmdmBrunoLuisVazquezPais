@@ -25,7 +25,7 @@ class _RegisterCliente extends State<RegisterClient> {
     controllerNombre = TextEditingController();
     controllerProblema = TextEditingController();
     controllerDescripcion = TextEditingController();
-    controllerFecha = TextEditingController();
+    final DateFormat formatter = DateFormat('dd/MM/yy');
     controllerEstado = TextEditingController();
     controllerTelefono = TextEditingController();
     super.initState();
