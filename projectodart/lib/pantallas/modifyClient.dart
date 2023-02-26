@@ -39,7 +39,7 @@ class _ModifyClient extends State<ModifyClient>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registro de Cliente'),
+        title: Text('Modificacion del de Cliente'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
