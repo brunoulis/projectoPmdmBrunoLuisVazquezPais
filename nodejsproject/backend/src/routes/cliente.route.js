@@ -7,4 +7,4 @@ router.post('/api/clientes/add', guardarCliente);
 router.delete('/api/clientes/delete', eliminarCliente);
 router.put('/api/clientes/mod', modificarCliente);
 
-module.exports = router;
+module.exports = {router};
