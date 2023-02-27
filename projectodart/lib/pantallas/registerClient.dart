@@ -17,8 +17,7 @@ class _RegisterCliente extends State<RegisterClient> {
   late TextEditingController controllerFecha;
   late TextEditingController controllerEstado;
   late TextEditingController controllerTelefono;
-
-  final DateFormat formatter = DateFormat('dd/MM/yy');
+  late DateFormat formatter; 
   
   String? dropdownValue;
 
@@ -30,6 +29,7 @@ class _RegisterCliente extends State<RegisterClient> {
     controllerFecha = TextEditingController();
     controllerEstado = TextEditingController();
     controllerTelefono = TextEditingController();
+    formatter = DateFormat('dd/MM/yy');
     super.initState();
   }
 

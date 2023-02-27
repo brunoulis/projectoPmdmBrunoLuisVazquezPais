@@ -21,7 +21,7 @@ class _ModifyClient extends State<ModifyClient>{
   late TextEditingController controllerEstado;
   late TextEditingController controllerTelefono;
   late String id;
-  final DateFormat formatter = DateFormat('dd/MM/yy');
+  late DateFormat formatter; 
 
   @override void initState() {
     // TODO: implement initState
@@ -30,7 +30,7 @@ class _ModifyClient extends State<ModifyClient>{
     controllerNombre = new TextEditingController(text: client.name);
     controllerProblema = new TextEditingController(text: client.problem);
     controllerDescripcion =  new TextEditingController(text: client.descripcion);
-    final DateFormat formatter = DateFormat('dd/MM/yy');
+    formatter = DateFormat('dd/MM/yy');
     controllerEstado = new TextEditingController(text: client.state);
     controllerTelefono = new TextEditingController(text: client.phone);
     super.initState();
