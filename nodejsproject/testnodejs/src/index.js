@@ -5,7 +5,7 @@ async function main() {
     //Primero nos conectamos a la base de datos
     await dbConection();
     //Despues inicio mi servidor 
-    await app.listen(4000);
+    await app.listen(4002);
 }
 
 main();

@@ -4,9 +4,9 @@ const router = Router();
 
 
 router.get('/api/clientes', consultarclientes);
-router.post('/api/clientes/registro', agregarclientes);
-router.put('/api/clientes/modificar', modificarcliente);
-router.delete('/api/clientes/eliminar/:id', eliminarcliente);
+router.post('/api/clientes/add', agregarclientes);
+router.delete('/api/clientes/delete/:id',eliminarcliente);
+router.put('/api/clientes/mod', modificarcliente);
 
 
 
