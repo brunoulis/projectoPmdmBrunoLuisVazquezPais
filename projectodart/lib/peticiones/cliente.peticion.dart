@@ -23,7 +23,7 @@ List<Client> decodeJson(String responseBody) {
 mapClient(Client client, bool mapId){
   Map data;
   // Si vamos a guardar no enviamos el id en el objeto por que es automatico
-  if(mapId){
+  if(!mapId){
     data ={
       'nombre': '${client.name}',
       'problema': '${client.problem}',
