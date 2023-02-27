@@ -12,7 +12,6 @@ class RegisterClient extends StatefulWidget {
 
 class _RegisterCliente extends State<RegisterClient> {
   late TextEditingController controllerNombre;
-  late TextEditingController controllerProblema;
   late TextEditingController controllerDescripcion;
   late TextEditingController controllerFecha;
   late TextEditingController controllerEstado;
@@ -24,7 +23,6 @@ class _RegisterCliente extends State<RegisterClient> {
   @override
   void initState() {
     controllerNombre = TextEditingController();
-    controllerProblema = TextEditingController();
     controllerDescripcion = TextEditingController();
     controllerFecha = TextEditingController();
     controllerEstado = TextEditingController();
@@ -44,26 +42,6 @@ class _RegisterCliente extends State<RegisterClient> {
         child: ListView(
           children: [
             TextBox(controllerNombre, 'Nombre'),
-            TextBox(controllerProblema, 'Problema'),
-            TextBox(controllerDescripcion, 'Descripcion'),
-            TextFormField(
-              controller: controllerFecha,
-              decoration: InputDecoration(
-                labelText: 'Fecha',
-                hintText: 'dd/mm/aa',
-              ),
-              onTap: () async {
-                DateTime? picked = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(1900),
-                    lastDate: DateTime(2100));
-                if (picked != null) {
-                  String formattedDate = formatter.format(picked);
-                  controllerFecha.text = formattedDate;
-                }
-              },
-            ),
             SizedBox(height: 16),
             DropdownButtonFormField<String>(
               value: dropdownValue,
@@ -83,6 +61,26 @@ class _RegisterCliente extends State<RegisterClient> {
                   child: Text(value),
                 );
               }).toList(),
+            ),
+            SizedBox(height: 16),
+            TextBox(controllerDescripcion, 'Descripcion'),
+            TextFormField(
+              controller: controllerFecha,
+              decoration: InputDecoration(
+                labelText: 'Fecha',
+                hintText: 'dd/mm/aa',
+              ),
+              onTap: () async {
+                DateTime? picked = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime(2100));
+                if (picked != null) {
+                  String formattedDate = formatter.format(picked);
+                  controllerFecha.text = formattedDate;
+                }
+              },
             ),
             SizedBox(height: 16),
             TextBox(controllerEstado, 'Estado'),
@@ -108,12 +106,11 @@ class _RegisterCliente extends State<RegisterClient> {
             ElevatedButton(
               onPressed: () {
                 String nombre = controllerNombre.text;
-                String problema = controllerProblema.text;
+                String problema = dropdownValue!;
                 String descripcion = controllerDescripcion.text;
                 String fecha = controllerFecha.text;
                 String estado = controllerEstado.text;
                 String telefono = controllerTelefono.text;
-
                 if (nombre.isNotEmpty &&
                     problema.isNotEmpty &&
                     descripcion.isNotEmpty &&
