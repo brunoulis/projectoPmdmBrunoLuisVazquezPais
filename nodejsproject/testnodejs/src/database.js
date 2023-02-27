@@ -9,9 +9,6 @@ const dbConection= async() =>{
     }catch (error){
         throw new Error(error);
     }
-
-    
-
 }
 module.exports= {
     dbConection

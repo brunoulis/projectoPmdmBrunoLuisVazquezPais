@@ -1,10 +1,11 @@
-const { app } = require('./app');
+const app = require('./app');
 const { dbConection } = require('./database');
 
 async function main() {
+    //Primero nos conectamos a la base de datos
     await dbConection();
-    await app.listen(3000);
-    
+    //Despues inicio mi servidor 
+    await app.listen(4000);
 }
 
 main();
