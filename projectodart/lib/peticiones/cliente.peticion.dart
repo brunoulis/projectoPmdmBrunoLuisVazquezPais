@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:html';
+
 
 import 'package:projectodart/modelos/cliente.model.dart';
 import 'package:http/http.dart' as http;
@@ -23,25 +23,25 @@ List<Client> decodeJson(String responseBody) {
 mapClient(Client client, bool mapId){
   Map data;
   // Si vamos a guardar no enviamos el id en el objeto por que es automatico
-  if(!mapId){
+  if(mapId){
     data ={
-      'nombre': client.name,
-      'problema': client.problem,
-      'descripcion': client.descripcion,
-      'fecha': client.date,
-      'estado': client.state,
-      'telefono': client.phone
+      'nombre': '${client.name}',
+      'problema': '${client.problem}',
+      'descripcion': '${client.descripcion}',
+      'fecha': '${client.date}',
+      'estado': '${client.state}',
+      'telefono': '${client.phone}'
     };
     // Si vamos a actualizar enviamos el objeto cliente con su id
   }else{
     data ={
-      'id': client.id,
-      'nombre': client.name,
-      'problema': client.problem,
-      'descripcion': client.descripcion,
-      'fecha': client.date,
-      'estado': client.state,
-      'telefono': client.phone
+      '_id': '${client.id}',
+      'nombre': '${client.name}',
+      'problema': '${client.problem}',
+      'descripcion': '${client.descripcion}',
+      'fecha': '${client.date}',
+      'estado': '${client.state}',
+      'telefono': '${client.phone}'
     };
   }
   return data;
