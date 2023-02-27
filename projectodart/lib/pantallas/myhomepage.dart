@@ -80,7 +80,7 @@ class _MyHomePage extends State<MyHomePage> {
                MaterialPageRoute(
                 builder: (_) => ModifyClient(clientes[index]))).then((newClient){
                 setState(() {                                             
-                  messageResponse(context, newClient.nombre + " ha sido modificado");
+                  messageResponse(context, newClient.name + " ha sido modificado");
                 });
             });
           },
@@ -110,7 +110,6 @@ class _MyHomePage extends State<MyHomePage> {
                   onPressed: () {
                     deleteClient(client.id).then((value){
                         if(value.id != null){
-
                           setState(() {
                             messageResponse(context, client.name + " ha sido eliminado");
                           });
