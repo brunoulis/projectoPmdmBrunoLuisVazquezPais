@@ -1,22 +1,32 @@
-const ClienteService = require('../services/cliente.service');
+const clienteService = require('../services/cliente.service');
 
-
-const consultarClientes = async (req, res) => {
-    res.json({clientes: await ClienteService.consultarClientes()});
-}
-
-const guardarCliente = async (req, res) => {
+const agregarclientes = async (req, res) => {
     console.log(req.body);
-    res.json({cliente: await ClienteService.guardarCliente(req.body)});
+    res.json({
+       cliente: await clienteService.guardarcliente(req.body)
+
+    })
 
 }
 
-const eliminarCliente = async (req, res) => {
-    res.json({cliente: await ClienteService.eliminarCliente(req.params.id)});
+const consultarclientes = async(req, res) => {
+    res.json({
+        clientes: await clienteService.consultarclientes()
+    })
 }
 
-const modificarCliente = async (req, res) => {
-    res.json({cliente: await ClienteService.modificarCliente(req.body)});
+const modificarcliente = async(req, res) => {
+    res.json({
+        cliente: await clienteService.modificarcliente(req.body)
+    })
 }
 
-module.exports = {consultarClientes,guardarCliente, eliminarCliente, modificarCliente};
+const eliminarcliente = async(req, res) => {
+    res.json({
+        cliente: await clienteService.eliminarcliente(req.params.id)
+    })
+}
+
+
+
+module.exports = {consultarclientes, agregarclientes, modificarcliente, eliminarcliente};

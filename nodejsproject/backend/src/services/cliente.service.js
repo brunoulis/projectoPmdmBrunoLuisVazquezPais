@@ -1,54 +1,70 @@
-const clienteModel = require('../models/cliente.model');
+const clientemodel = require('../models/cliente.model');
 
-class ClienteService{
+
+
+class ClienteService {
     ClienteService() {}
-    async consultarClientes(){
-        try{
-            return await clienteModel.find();
-        }catch(error){
-            return error;
-        }
-    }
 
-    async guardarCliente(cliente = new clienteModel()){
-        try{
-            var clienteGuardado;
-            await clienteModel.create(cliente).then((value)=>{
-                clienteGuardado = value;
-            }); 
-            return clienteGuardado;
-        }catch(error){
-            console.log(error);
-        }
-    }
-
-    async eliminarCliente(id){
+    async guardarcliente(cliente = new clientemodel()) {
         try {
-            const clienteEliminado = await clienteModel.findOneAndRemove({_id: id});
+            var clienteGuardado;
+            await clientemodel.create(cliente).then( (value) => {
+                clienteGuardado =  value;
+            });
+
+            return clienteGuardado;
+
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+    async consultarclientes() {
+        try {
+
+            return await clientemodel.find();
+        } catch (error) {
+            return error;
+
+        }
+    }
+
+    async eliminarcliente(idc) {
+        console.log(idc);
+        var clienteEliminado;
+        try {
+            await clientemodel.findOneAndRemove({
+                _id: idc
+            }).then( (value) => {
+                console.log(value);
+                clienteEliminado = value;
+            });
+
             return clienteEliminado;
         } catch (error) {
             console.log(error);
+
         }
     }
-    
 
-    async modificarCliente(newCliente){
+    async modificarcliente(clientemod) {
+
+        var clienteModificado;
         try {
-            const clienteModificado = await clienteModel.findById(newCliente._id);
-            clienteModificado.nombre = newCliente.nombre;
-            clienteModificado.problema = newCliente.problema;
-            clienteModificado.descripcion = newCliente.descripcion;
-            clienteModificado.fecha = newCliente.fecha;
-            clienteModificado.estado = newCliente.estado;
-            clienteModificado.telefono = newCliente.telefono;
-    
-            await clienteModificado.save();
+            await clientemodel.findOneAndUpdate({
+                _id: clientemod._id
+            }, clientemod).then( (value) => {
+
+                clienteModificado = clientemod;
+            });
+
             return clienteModificado;
         } catch (error) {
             console.log(error);
+
         }
     }
-
 }
 
 module.exports = new ClienteService();
