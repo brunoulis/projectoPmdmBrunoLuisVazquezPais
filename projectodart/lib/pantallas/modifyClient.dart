@@ -125,13 +125,12 @@ class _ModifyClient extends State<ModifyClient>{
     );
   }
 
-  String formatPhoneNumber(String value) {
+    String formatPhoneNumber(String value) {
     final phoneNumber = value.replaceAll(RegExp(r'[^\d]'), '');
     final firstSubstring =
-        phoneNumber.substring(0, phoneNumber.length > 3 ? 3 : phoneNumber.length);
+    phoneNumber.substring(0, phoneNumber.length > 3 ? 3 : phoneNumber.length);
     final secondSubstring = phoneNumber.length > 3 ? phoneNumber.substring(3) : '';
-
-    return '$firstSubstring-$secondSubstring';
+    return '$firstSubstring$secondSubstring';
   }
 
 

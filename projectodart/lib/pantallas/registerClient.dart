@@ -19,6 +19,8 @@ class _RegisterCliente extends State<RegisterClient> {
   late TextEditingController controllerTelefono;
 
   final DateFormat formatter = DateFormat('dd/MM/yy');
+  
+  String? dropdownValue;
 
   @override
   void initState() {
@@ -61,6 +63,26 @@ class _RegisterCliente extends State<RegisterClient> {
                   controllerFecha.text = formattedDate;
                 }
               },
+            ),
+            SizedBox(height: 16),
+            DropdownButtonFormField<String>(
+              value: dropdownValue,
+              decoration: InputDecoration(
+                labelText: 'Tipo de problema',
+                hintText: 'Seleccione un problema',
+              ),
+              onChanged: (value) {
+                setState(() {
+                  dropdownValue = value;
+                });
+              },
+              items: <String>['Aire acondicionado', 'Termo', 'Otro']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
             ),
             SizedBox(height: 16),
             TextBox(controllerEstado, 'Estado'),
@@ -122,11 +144,12 @@ class _RegisterCliente extends State<RegisterClient> {
   }
 
   String formatPhoneNumber(String value) {
-    final phoneNumber = value.replaceAll(RegExp(r'[^\d]'), '');
-    final firstSubstring =
-        phoneNumber.substring(0, phoneNumber.length > 3 ? 3 : phoneNumber.length);
-    final secondSubstring = phoneNumber.length > 3 ? phoneNumber.substring(3) : '';
+  final phoneNumber = value.replaceAll(RegExp(r'[^\d]'), '');
+  final firstSubstring =
+      phoneNumber.substring(0, phoneNumber.length > 3 ? 3 : phoneNumber.length);
+  final secondSubstring = phoneNumber.length > 3 ? phoneNumber.substring(3) : '';
 
-    return '$firstSubstring-$secondSubstring';
+  return '$firstSubstring$secondSubstring';
   }
+
 }
