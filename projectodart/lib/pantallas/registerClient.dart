@@ -19,6 +19,7 @@ class _RegisterCliente extends State<RegisterClient> {
   late DateFormat formatter; 
   
   String? dropdownValue;
+  String? estadoDropdownValue;
 
   @override
   void initState() {
@@ -83,7 +84,25 @@ class _RegisterCliente extends State<RegisterClient> {
               },
             ),
             SizedBox(height: 16),
-            TextBox(controllerEstado, 'Estado'),
+            DropdownButtonFormField<String>(
+              value: estadoDropdownValue,
+              decoration: InputDecoration(
+                labelText: 'Estado',
+                hintText: 'Seleccione un estado',
+              ),
+              onChanged: (value) {
+                setState(() {
+                  estadoDropdownValue = value;
+                });
+              },
+              items: <String>['En proceso', 'COMPLETADO', 'SIN COMPLETAR']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
             SizedBox(height: 16),
             TextFormField(
               controller: controllerTelefono,
@@ -109,7 +128,7 @@ class _RegisterCliente extends State<RegisterClient> {
                 String problema = dropdownValue!;
                 String descripcion = controllerDescripcion.text;
                 String fecha = controllerFecha.text;
-                String estado = controllerEstado.text;
+                String estado = estadoDropdownValue!;
                 String telefono = controllerTelefono.text;
                 if (nombre.isNotEmpty &&
                     problema.isNotEmpty &&
@@ -117,22 +136,22 @@ class _RegisterCliente extends State<RegisterClient> {
                     fecha.isNotEmpty &&
                     estado.isNotEmpty &&
                     telefono.isNotEmpty) {
-                  //Client client = Client(
-                    //name: nombre,
-                    //problem: problema,
-                    //descripcion: descripcion,
-                    //date: fecha,
-                    //state: estado,
-                    //phone: telefono,
-                  //);
-                  Client client = Client.fromData(
-                    nombre,
-                    problema,
-                    descripcion,
-                    fecha,
-                    estado,
-                    telefono,
+                  Client client = Client(
+                    name: nombre,
+                    problem: problema,
+                    descripcion: descripcion,
+                    date: fecha,
+                    state: estado,
+                    phone: telefono,
                   );
+                  //Client client = Client.fromData(
+                    //nombre,
+                    //problema,
+                    //descripcion,
+                    //fecha,
+                    //estado,
+                    //telefono,
+                  //);
                   addClient(client).then((value) {
                     if (value.id != '') {
                       Navigator.pop(context, value);
