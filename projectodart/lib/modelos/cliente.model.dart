@@ -29,6 +29,6 @@ class Client {
     );
   }
 
-   Client.fromData(this.name, this.problem, this.descripcion, this.date, this.state, this.phone);
+   
   
 }
