@@ -117,13 +117,21 @@ class _RegisterCliente extends State<RegisterClient> {
                     fecha.isNotEmpty &&
                     estado.isNotEmpty &&
                     telefono.isNotEmpty) {
-                  Client client = Client(
-                    name: nombre,
-                    problem: problema,
-                    descripcion: descripcion,
-                    date: fecha,
-                    state: estado,
-                    phone: telefono,
+                  //Client client = Client(
+                    //name: nombre,
+                    //problem: problema,
+                    //descripcion: descripcion,
+                    //date: fecha,
+                    //state: estado,
+                    //phone: telefono,
+                  //);
+                  Client client = Client.fromData(
+                    nombre,
+                    problema,
+                    descripcion,
+                    fecha,
+                    estado,
+                    telefono,
                   );
                   addClient(client).then((value) {
                     if (value.id != '') {

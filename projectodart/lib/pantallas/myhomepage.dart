@@ -27,7 +27,7 @@ class _MyHomePage extends State<MyHomePage> {
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterClient())).then((newClient){
               setState(() {
-                messageResponse(context, newClient.nombre + " ha sido añadido");
+                messageResponse(context, newClient.name + " ha sido añadido");
               });
           });
         },
