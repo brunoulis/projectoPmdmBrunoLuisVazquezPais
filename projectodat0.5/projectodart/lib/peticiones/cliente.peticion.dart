@@ -47,6 +47,7 @@ mapClient(Client client, bool mapId){
   return data;
 }
 
+
 Future<Client> addClient(Client client) async {
   var url = Uri.parse('http://localhost:4002/api/clientes/add');
   var _body =json.encode(mapClient(client, false));
@@ -76,7 +77,7 @@ Future<Client> updateClient(Client client) async {
 }
 
 Future<Client> deleteClient(String clientId) async {
-  final response= await http.delete(Uri.parse('http://localhost:4002/api/clientes/del/${clientId}'),
+  final response= await http.delete(Uri.parse('http://localhost:4002/api/clientes/delete/${clientId}'),
     headers: {"Content-Type": "application/json; charset=UTF-8"}
   );
   if(response.statusCode == 200){
